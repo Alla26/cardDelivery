@@ -1,5 +1,6 @@
 package ru.netology.cardDelivery;
 
+import com.codeborne.selenide.Selenide;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,16 +25,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CardDeliveryTest {
 
-    @BeforeAll
-    static void setUpAll() {
-        WebDriverManager.chromedriver().setup();
-
-    }
-
 
     @BeforeEach
     void setUp() {
-        open("http://localhost:9999");
+        Selenide.open("http://localhost:9999");
 
     }
 
