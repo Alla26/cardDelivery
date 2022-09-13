@@ -16,13 +16,10 @@ repositories {
 }
 
 dependencies {
-   /* testImplementation("io.github.bonigarcia:webdrivermanager:5.3.0")  //я добавила
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.6.1'
-    testImplementation 'com.codeborne:selenide:5.19.0'*/
 
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.6.1'
     testImplementation 'com.codeborne:selenide:5.19.0'
+
 
 }
 
