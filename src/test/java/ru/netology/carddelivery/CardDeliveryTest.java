@@ -2,6 +2,7 @@ package ru.netology.carddelivery;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,9 +23,11 @@ import java.util.Date;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
+import static java.lang.Long.parseLong;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CardDeliveryTest {
+    SelenideElement calendarMenu = $$x("//body/div").get(1);
 
 
     @BeforeEach
@@ -76,17 +79,26 @@ public class CardDeliveryTest {
     void shouldSendSuccessfullyChoosingDate() {
         $("[data-test-id='city'] [placeholder=\"Город\"]").sendKeys("Москва");
         $("[data-test-id='city'] [placeholder=\"Город\"]").click();
-        $x("//*[@id=\"root\"]/div/form/fieldset/div[2]/span/span/span").click();
-        $("[data-test-id=\"date\"] .calendar-input__native-control").click();
-      //  String date = LocalDate.now().plusDays(4).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-     //   $x("//*[@placeholder=\"Дата встречи\"]").sendKeys(Keys.chord(Keys.CONTROL + "a"), Keys.BACK_SPACE);
-      //  $x("//*[@placeholder=\"Дата встречи\"]").setValue(date);
-     //   $("[data-test-id=\"name\"] .input__control").setValue("Иван Иванов-Иванов");
-    //    $("[data-test-id=\"phone\"] .input__control").setValue("+79999999999");
-      //  $("[data-test-id=\"agreement\"]").click();
-     //   $(".button__text").click();
-      //  $("[data-test-id=notification]").shouldBe(visible, Duration.ofSeconds(15));
-     //   $("[data-test-id='notification'] .notification__content").shouldHave(exactText("Встреча успешно забронирована на " + date));
+        $("[class=\"input input_type_tel input_view_default input_size_m input_width_available input_has-icon input_has-value input_theme_alfa-on-white calendar-input__custom-control\"]").click();
+
+        $("[class=\"calendar__layout\"]").sendKeys(Keys.ARROW_DOWN, Keys.ARROW_LEFT, Keys.ENTER);
+
+        $("[data-test-id=\"name\"] .input__control").setValue("Иван Иванов-Иванов");
+        $("[data-test-id=\"phone\"] .input__control").setValue("+79999999999");
+        $("[data-test-id=\"agreement\"]").click();
+        $(".button__text").click();
+        $("[data-test-id=notification]").shouldBe(visible, Duration.ofSeconds(15));
+        $("[class=\"notification__title\"]").shouldHave(exactText("Успешно!"));
+
+
+        //  String currentDate = String.valueOf(parseLong($("[class=\"popup__container\"] [class=\"calendar__day calendar__day_state_current\"]").getText()));
+        //  String currentMonth = String.valueOf(Long.parseLong($("[class=\"calendar calendar_theme_alfa-on-white\"] [class=\"calendar__name\"]").getText()));
+
+        //  System.out.println("Дата" + currentDate + currentMonth);
+
+        //    long futureDate = currentDate + 604_800;
+        //   $("[class=\"calendar__layout\"]").click();
+
 
     }
 }
