@@ -79,10 +79,14 @@ public class CardDeliveryTest {
     void shouldSendSuccessfullyChoosingDate() {
         $("[data-test-id='city'] [placeholder=\"Город\"]").sendKeys("Москва");
         $("[data-test-id='city'] [placeholder=\"Город\"]").click();
-        $("[class=\"input input_type_tel input_view_default input_size_m input_width_available input_has-icon input_has-value input_theme_alfa-on-white calendar-input__custom-control\"]").click();
+        //$("[class=\"input input_type_tel input_view_default input_size_m input_width_available input_has-icon input_has-value input_theme_alfa-on-white calendar-input__custom-control\"]").click();
+        //  $x("//*[@id=\"root\"]/div/form/fieldset/div[2]/span/span/span").click();
+        //  $("[class=\"calendar-input calendar-input_width_available calendar-input_theme_alfa-on-white\"]").click();
+        //  $("[class=\"input__icon\"]").click();
+        // $x("//*[@id=\"root\"]/div/form/fieldset/div[2]/span/span/span/span/span[1]/span/button").click();
 
         $("[class=\"calendar__layout\"]").sendKeys(Keys.ARROW_DOWN, Keys.ARROW_LEFT, Keys.ENTER);
-
+        
         $("[data-test-id=\"name\"] .input__control").setValue("Иван Иванов-Иванов");
         $("[data-test-id=\"phone\"] .input__control").setValue("+79999999999");
         $("[data-test-id=\"agreement\"]").click();
